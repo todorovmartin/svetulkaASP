@@ -2,9 +2,14 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public class HomeController : BaseController
+    public class ProductsController : BaseController
     {
-        public IActionResult Index()
+        public ProductsController()
+        {
+
+        }
+
+        public IActionResult Details()
         {
             return this.View();
         }

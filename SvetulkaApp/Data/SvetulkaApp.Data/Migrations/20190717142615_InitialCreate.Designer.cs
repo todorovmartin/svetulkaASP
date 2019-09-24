@@ -9,7 +9,7 @@ using SvetulkaApp.Data;
 
 namespace SvetulkaApp.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SvetulkaDbContext))]
     [Migration("20190717142615_InitialCreate")]
     partial class InitialCreate
     {

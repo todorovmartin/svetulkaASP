@@ -18,7 +18,7 @@ namespace SvetulkaApp.Data.Models
 
         public int Quantity { get; set; }
 
-        public DateTime? DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; } = DateTime.UtcNow;
 
         public bool IsInStock { get; set; }
 

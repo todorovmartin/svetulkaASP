@@ -1,0 +1,50 @@
+﻿@using SvetulkaApp.Data.Models.Enums
+
+@model SvetulkaApp.Web.Areas.Administration.ViewModels.Products.CreateProductViewModel
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h3 class="mobile-fondsize-20 text-muted text-center">@ViewData["Title"]</h3>
+<hr class="w-50" />
+<div class="container">
+    <form asp-controller="Products" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <select class="form-control" asp-for="ProductCategories" asp-items="Html.GetEnumSelectList<ProductCategory>()">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="ProductCategories" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" value="" class="btn btn-primary">Създай продукт</button>
+        </div>
+    </form>
+</div>

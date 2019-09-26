@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SvetulkaApp.Data.Models;
 using SvetulkaApp.Web.Areas.Administration.ViewModels.Products;
+using SvetulkaApp.Web.ViewModels.Favorites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace SvetulkaApp.Web.MappingConfig
             this.CreateMap<CreateProductViewModel, Product>();
             this.CreateMap<EditProductViewModel, Product>();
             this.CreateMap<Product, EditProductViewModel>();
+
+            this.CreateMap<FavoriteProduct, AllFavoriteViewModel>()
+                .ForMember(x => x.ProductImageUrl, y => y.MapFrom(src => src.Product.ImageUrl));
         }
     }
 }

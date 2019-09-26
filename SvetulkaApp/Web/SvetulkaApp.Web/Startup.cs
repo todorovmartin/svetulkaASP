@@ -105,6 +105,7 @@
             services.AddTransient<ISmsSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IFavoritesService, FavoritesService>();
 
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>

@@ -46,11 +46,10 @@ namespace SvetulkaApp.Web.Services
 
         public Product GetProductById(int id)
         {
-            return this.db.Products.Include(p => p.Category)
-                                   .Include(x => x.ImageUrl)
-                                   .Include(x => x.Name)
-                                   .Include(x => x.Price)
-                                   .FirstOrDefault(x => x.Id == id);
+            var product = this.db.Products.FirstOrDefault(x => x.Id == id);
+
+            return product;
+            //return this.db.Products.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public IEnumerable<Product> GetProductsByCategory(int categoryId)
@@ -71,6 +70,31 @@ namespace SvetulkaApp.Web.Services
                                                            .Include(x => x.Price)
                                                            .Where(x => searchStringClean.All(c => x.Name.ToLower().Contains(c.ToLower())));
             return products;
+        }
+
+        public bool ProductExists(int id)
+        {
+            return this.db.Products.Any(e => e.Id == id);
+        }
+
+        public bool EditProduct(Product product)
+        {
+            if (!this.ProductExists(product.Id))
+            {
+                return false;
+            }
+
+            try
+            {
+                this.db.Update(product);
+                this.db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

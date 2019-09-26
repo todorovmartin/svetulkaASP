@@ -1,27 +1,44 @@
-﻿namespace SvetulkaApp.Web.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using SvetulkaApp.Data.Models;
+using SvetulkaApp.Web.Services.Interfaces;
+using System.Linq;
+using X.PagedList;
 
+namespace SvetulkaApp.Web.Controllers
+{
     public class ProductsController : BaseController
     {
-        public ProductsController()
-        {
+        private readonly IProductsService productsService;
+        private readonly IMapper mapper;
 
+        public ProductsController(IProductsService productsService, IMapper mapper)
+        {
+            this.productsService = productsService;
+            this.mapper = mapper;
         }
 
-        public IActionResult Details()
+        public Product GetCurrentProduct(int id)
         {
-            return this.View();
+            var product = this.productsService.GetProductById(id);
+
+            return product;
         }
 
-        public IActionResult Privacy()
-        {
-            return this.View();
-        }
+        //    public IActionResult Details() =>
+        //new PartialViewResult
+        //{
+        //    ViewName = "_DetailsPartial",
+        //    ViewData = this.ViewData,
+        //};
 
-        public IActionResult TestPage()
+        public IActionResult All()
         {
-            return this.View();
+            var products = this.productsService.GetAllProducts().OrderByDescending(x => x.Id).ToList();
+
+            var allprods = products.ToPagedList();
+
+            return this.View(allprods);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

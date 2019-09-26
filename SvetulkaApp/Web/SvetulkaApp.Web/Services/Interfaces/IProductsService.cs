@@ -18,6 +18,10 @@ namespace SvetulkaApp.Web.Services.Interfaces
 
         void DeleteProduct(int id);
 
+        bool ProductExists(int id);
+
+        bool EditProduct(Product product);
+
         IEnumerable<Product> GetProductsBySearch(string searchString);
     }
 }

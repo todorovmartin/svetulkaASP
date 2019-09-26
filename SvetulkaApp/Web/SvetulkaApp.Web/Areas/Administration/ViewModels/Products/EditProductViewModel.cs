@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SvetulkaApp.Web.Areas.Administration.ViewModels.Products
 {
-    public class CreateProductViewModel
+    public class EditProductViewModel
     {
         public int Id { get; set; }
 

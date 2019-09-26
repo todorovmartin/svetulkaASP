@@ -1,15 +1,15 @@
 ﻿@using SvetulkaApp.Data.Models.Enums
 
-@model SvetulkaApp.Web.Areas.Administration.ViewModels.Products.CreateProductViewModel
+@model SvetulkaApp.Web.Areas.Administration.ViewModels.Products.EditProductViewModel
 
 @{
-    ViewData["Title"] = "Add Product";
+    ViewData["Title"] = "Edit Product";
 }
 
 <h3 class="mobile-fondsize-20 text-muted text-center">@ViewData["Title"]</h3>
 <hr class="w-50" />
 <div class="container">
-    <form asp-controller="Products" asp-action="Create" method="post" enctype="multipart/form-data">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -22,19 +22,6 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group col-md-6">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <select class="form-control" asp-for="ProductCategories" asp-items="Html.GetEnumSelectList<ProductCategory>()">
-                    @*<option selected="selected" value="">Please select</option>*@
-                </select>
-                <span asp-validation-for="ProductCategories" class="text-danger"></span>
-            </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -43,8 +30,17 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input asp-for="ImageUrl" class="form-control" multiple />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
         <div class="form-group text-center">
-            <button type="submit" value="" class="btn btn-primary">Create Product</button>
+            <button type="submit" value="" class="btn btn-primary">Save Changes</button>
         </div>
     </form>
 </div>

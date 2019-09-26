@@ -51,5 +51,43 @@ namespace SvetulkaApp.Web.Areas.Administration.Controllers
 
             return this.RedirectToAction(nameof(this.All));
         }
+
+        public IActionResult Edit(int id)
+        {
+            var product = this.productsService.GetProductById(id);
+
+            if (product == null)
+            {
+                return this.NotFound();
+            }
+
+            var model = this.mapper.Map<EditProductViewModel>(product);
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditProductViewModel model)
+        {
+            var product = this.mapper.Map<Product>(model);
+
+            this.productsService.EditProduct(product);
+
+            return this.RedirectToAction(nameof(this.All));
+        }
+
+        public IActionResult Details(int id)
+        {
+            var product = this.productsService.GetProductById(id);
+
+            if (product == null)
+            {
+                return this.NotFound();
+            }
+
+            var model = this.mapper.Map<DetailsProductViewModel>(product);
+
+            return this.View(model);
+        }
     }
 }

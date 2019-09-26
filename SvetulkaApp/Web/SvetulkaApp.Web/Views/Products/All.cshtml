@@ -1,0 +1,39 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList;
+@using SvetulkaApp.Web.Areas.Administration.ViewModels.Products
+
+@model IPagedList<SvetulkaApp.Data.Models.Product>
+
+@{
+    this.ViewData["Title"] = "Products";
+}
+<link rel="stylesheet" href="~/css/allproducts.css" />
+<div class="container">
+    <h1>Shop</h1>
+    <div class="card-columns">
+        @foreach (var product in Model)
+        {
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">@product.Name</h4>
+                    <h6 class="card-subtitle text-muted">@product.Id</h6>
+                </div>
+                <img src="@product.ImageUrl">
+                <div class="card-body">
+                    <p class="card-text">@product.Description</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-btns">@product.Price bgn</p>
+                    <a class="card-btns card-link" asp-route-id="@product.Id"
+                       data-toggle="modal" data-target=".bd-example-modal-lg">Details</a>
+                    <a class="card-btns card-link" href="#">Order</a>
+                </div>
+            </div>
+
+            <partial name="_DetailsPartial" model="product" />
+        }
+    </div>
+</div>
+@*@Html.Partial("_DetailsPartial.cshtml", new DetailsProductViewModel { Price = 3, Description = "hello" })*@
+@*<partial name="_DetailsPartial" model="new DetailsProductViewModel { Price = product.Price }" />*@

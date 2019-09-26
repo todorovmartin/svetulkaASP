@@ -13,6 +13,8 @@ namespace SvetulkaApp.Web.MappingConfig
         public SvetulkaMappingProfile()
         {
             this.CreateMap<CreateProductViewModel, Product>();
+            this.CreateMap<EditProductViewModel, Product>();
+            this.CreateMap<Product, EditProductViewModel>();
         }
     }
 }

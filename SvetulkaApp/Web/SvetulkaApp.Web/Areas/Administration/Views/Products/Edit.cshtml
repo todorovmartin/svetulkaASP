@@ -32,6 +32,15 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
+                <label asp-for="Category" class="control-label"></label>
+                <select class="form-control" asp-for="Category" asp-items="Html.GetEnumSelectList<ProductCategory>()">
+                    <option selected="" disabled="" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
                 <div class="form-group">
                     <label asp-for="ImageUrl" class="control-label"></label>
                     <input asp-for="ImageUrl" class="form-control" multiple />

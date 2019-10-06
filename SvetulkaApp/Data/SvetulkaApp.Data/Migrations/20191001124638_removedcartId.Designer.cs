@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SvetulkaApp.Data;
 
 namespace SvetulkaApp.Data.Migrations
 {
     [DbContext(typeof(SvetulkaDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191001124638_removedcartId")]
+    partial class removedcartId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,8 +186,6 @@ namespace SvetulkaApp.Data.Migrations
 
                     b.Property<string>("SecurityStamp");
 
-                    b.Property<int>("ShoppingCartId");
-
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -202,8 +202,6 @@ namespace SvetulkaApp.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -448,14 +446,6 @@ namespace SvetulkaApp.Data.Migrations
                     b.HasOne("SvetulkaApp.Data.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("SvetulkaApp.Data.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("SvetulkaApp.Data.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

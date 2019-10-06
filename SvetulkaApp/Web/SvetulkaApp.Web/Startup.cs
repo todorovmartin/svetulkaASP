@@ -72,6 +72,8 @@
                     options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
                 });
 
+            services.AddSession();
+
             services
                 .ConfigureApplicationCookie(options =>
                 {
@@ -106,6 +108,8 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IFavoritesService, FavoritesService>();
+            services.AddScoped<IShoppingCartService, ShoppingCartService>();
+            services.AddScoped<IUsersService, UsersService>();
 
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
@@ -150,6 +154,7 @@
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseCookiePolicy();
             app.UseAuthentication();
 

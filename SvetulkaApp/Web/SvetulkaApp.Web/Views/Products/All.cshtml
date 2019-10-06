@@ -28,11 +28,11 @@
                     <a class="card-btns card-link" asp-route-id="@product.Id"
                        data-toggle="modal" data-target=".bd-example-modal-lg">Details</a>
                     <a asp-controller="Favorites" asp-action="Add" asp-route-id="@product.Id" class="card-btns card-link">fav</a>
-                    <a class="card-btns card-link" href="#">Order</a>
+                    <a class="card-btns card-link" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Add to cart</a>
                 </div>
             </div>
 
-            <partial name="_DetailsPartial" model="product" />
+            @*<partial name="_DetailsPartial" model="product" />*@
         }
     </div>
 </div>

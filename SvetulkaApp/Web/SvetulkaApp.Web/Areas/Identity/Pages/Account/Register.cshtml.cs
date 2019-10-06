@@ -12,6 +12,10 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
+    using SvetulkaApp.Web.ViewModels.ShoppingCart;
+    using SvetulkaApp.Common;
+    using System.Collections.Generic;
+    using SvetulkaApp.Web.Services.Interfaces;
 
     [AllowAnonymous]
 #pragma warning disable SA1649 // File name should match first type name
@@ -22,17 +26,20 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
+        private readonly IShoppingCartService shoppingCartService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IShoppingCartService shoppingCartService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
+            this.shoppingCartService = shoppingCartService;
         }
 
         [BindProperty]
@@ -50,7 +57,13 @@
             returnUrl = returnUrl ?? this.Url.Content("~/");
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = this.Input.Email,
+                    Email = this.Input.Email,
+                    ShoppingCart = new ShoppingCart(),
+                };
+
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
                 {
@@ -69,6 +82,18 @@
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await this.signInManager.SignInAsync(user, isPersistent: false);
+
+                    var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartViewModel>>(this.HttpContext.Session, GlobalConstants.SESSION_SHOPPING_CART_KEY);
+                    if (cart != null)
+                    {
+                        foreach (var product in cart)
+                        {
+                            this.shoppingCartService.AddProductInCart(product.Id, this.Input.Email);
+                        }
+
+                        this.HttpContext.Session.Remove(GlobalConstants.SESSION_SHOPPING_CART_KEY);
+                    }
+
                     return this.LocalRedirect(returnUrl);
                 }
 
@@ -99,6 +124,14 @@
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            //[Required]
+            //[Display(Name = "First Name")]
+            //public string FirstName { get; set; }
+
+            //[Required]
+            //[Display(Name = "Last Name")]
+            //public string LastName { get; set; }
         }
     }
 }

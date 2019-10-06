@@ -7,6 +7,7 @@ namespace SvetulkaApp.Data.Models
     using SvetulkaApp.Data.Common.Models;
 
     using Microsoft.AspNetCore.Identity;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
@@ -18,9 +19,9 @@ namespace SvetulkaApp.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
 
-        public ShoppingCart ShoppingCart { get; set; }
+        public string LastName { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
@@ -38,7 +39,12 @@ namespace SvetulkaApp.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-        //my data
+        // my data
+        [ForeignKey("ShoppingCart")]
+        public int ShoppingCartId { get; set; }
+
+        public ShoppingCart ShoppingCart { get; set; }
+
         public virtual ICollection<Order> Orders { get; set; }
 
         public virtual ICollection<FavoriteProduct> Favorites { get; set; }

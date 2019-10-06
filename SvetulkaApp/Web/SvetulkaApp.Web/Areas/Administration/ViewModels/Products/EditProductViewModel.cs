@@ -17,9 +17,7 @@ namespace SvetulkaApp.Web.Areas.Administration.ViewModels.Products
         public string Name { get; set; }
 
         [Display(Name = "Category")]
-        public int ProductCategoryId { get; set; }
-
-        public ICollection<ProductCategory> ProductCategories { get; set; }
+        public string Category { get; set; }
 
         [Display(Name = "Description")]
         public string Description { get; set; }

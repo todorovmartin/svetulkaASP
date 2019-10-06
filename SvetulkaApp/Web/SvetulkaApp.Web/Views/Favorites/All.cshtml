@@ -34,13 +34,13 @@
                     </td>
                     <td class="col-md-5 d-flex justify-content-around">
                         <div class="mr-2">
-                            <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.ProductId" class="btn btn-primary btn-sm mobile-fondsize-11"><i class="fas fa-shopping-cart"></i> Добави</a>
+                            <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.ProductId" class="btn btn-primary btn-sm mobile-fondsize-11"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>
-                        <div class="mr-2">
-                            <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.ProductId" asp-route-direct="true" class="btn btn-danger btn-sm"><i class="far fa-credit-card"></i> Купи</a>
-                        </div>
+                        @*<div class="mr-2">
+                            <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.ProductId" asp-route-direct="true" class="btn btn-danger btn-sm"><i class="far fa-credit-card"></i> Buy</a>
+                        </div>*@
                         <div>
-                            <a asp-controller="Favorites" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-outline-danger btn-sm"><i class="fas fa-times-circle"></i> Премахни</a>
+                            <a asp-controller="Favorites" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-outline-danger btn-sm"><i class="fas fa-times-circle"></i> Remove</a>
                         </div>
                     </td>
                 </tr>

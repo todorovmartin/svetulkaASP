@@ -4,6 +4,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+<link rel="stylesheet" href="~/css/dropdownFix.css" />
 <ul class="navbar-nav">
     @if (this.SignInManager.IsSignedIn(this.User))
     {
@@ -44,6 +45,9 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" asp-controller="Favorites" asp-action="All"><i class="fas fa-heart fa-md"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="ShoppingCart" asp-action="Index"><i class="fas fa-shopping-bag fa-md"></i></a>
         </li>
     }
     else

@@ -24,9 +24,9 @@ namespace SvetulkaApp.Web.Controllers
 
         public IActionResult All()
         {
-            IEnumerable<FavoriteProduct> xeonUserFavoriteProducts = this.favoritesService.All(this.User.Identity.Name);
+            IEnumerable<FavoriteProduct> userFavoriteProducts = this.favoritesService.All(this.User.Identity.Name);
 
-            var favoriteProductsViewModel = this.mapper.Map<IList<AllFavoriteViewModel>>(xeonUserFavoriteProducts);
+            var favoriteProductsViewModel = this.mapper.Map<IList<AllFavoriteViewModel>>(userFavoriteProducts);
 
             return this.View(favoriteProductsViewModel);
         }

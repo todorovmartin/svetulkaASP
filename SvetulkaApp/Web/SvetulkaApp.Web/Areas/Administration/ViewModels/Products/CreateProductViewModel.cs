@@ -17,9 +17,11 @@ namespace SvetulkaApp.Web.Areas.Administration.ViewModels.Products
         public string Name { get; set; }
 
         [Display(Name = "Category")]
-        public int ProductCategoryId { get; set; }
+        [Required(ErrorMessage = "\"{0}\" is required.")]
+        public string Category { get; set; }
+        //public int ProductCategoryId { get; set; }
 
-        public ICollection<ProductCategory> ProductCategories { get; set; }
+        //public ICollection<ProductCategory> ProductCategories { get; set; }
 
         [Display(Name = "Description")]
         public string Description { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SvetulkaApp.Data;
 
 namespace SvetulkaApp.Data.Migrations
 {
     [DbContext(typeof(SvetulkaDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190930155656_addedshoppingCartId")]
+    partial class addedshoppingCartId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,11 +160,9 @@ namespace SvetulkaApp.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FullName");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -184,7 +184,7 @@ namespace SvetulkaApp.Data.Migrations
 
                     b.Property<string>("SecurityStamp");
 
-                    b.Property<int>("ShoppingCartId");
+                    b.Property<int?>("ShoppingCartId");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -203,7 +203,9 @@ namespace SvetulkaApp.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("ShoppingCartId");
+                    b.HasIndex("ShoppingCartId")
+                        .IsUnique()
+                        .HasFilter("[ShoppingCartId] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -365,11 +367,9 @@ namespace SvetulkaApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -454,9 +454,8 @@ namespace SvetulkaApp.Data.Migrations
             modelBuilder.Entity("SvetulkaApp.Data.Models.ApplicationUser", b =>
                 {
                     b.HasOne("SvetulkaApp.Data.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne("User")
+                        .HasForeignKey("SvetulkaApp.Data.Models.ApplicationUser", "ShoppingCartId");
                 });
 
             modelBuilder.Entity("SvetulkaApp.Data.Models.FavoriteProduct", b =>
@@ -517,13 +516,6 @@ namespace SvetulkaApp.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("SvetulkaApp.Data.Models.ShoppingCart", b =>
-                {
-                    b.HasOne("SvetulkaApp.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SvetulkaApp.Data.Models.ShoppingCartProduct", b =>

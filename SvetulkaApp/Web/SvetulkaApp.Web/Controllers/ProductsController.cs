@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SvetulkaApp.Data.Models;
+using SvetulkaApp.Web.Areas.Administration.ViewModels.Products;
 using SvetulkaApp.Web.Services.Interfaces;
 using System.Linq;
 using X.PagedList;
@@ -25,12 +26,17 @@ namespace SvetulkaApp.Web.Controllers
             return product;
         }
 
-        //    public IActionResult Details() =>
-        //new PartialViewResult
-        //{
-        //    ViewName = "_DetailsPartial",
-        //    ViewData = this.ViewData,
-        //};
+        public IActionResult Details(int id)
+        {
+            var product = this.productsService.GetProductById(id);
+
+            this.ViewBag.Description = product.Description;
+            this.ViewBag.ImageUrl = product.ImageUrl;
+            this.ViewBag.Name = product.Name;
+            this.ViewBag.Price = product.Price;
+
+            return this.PartialView("_DetailsPartial");
+        }
 
         public IActionResult All()
         {

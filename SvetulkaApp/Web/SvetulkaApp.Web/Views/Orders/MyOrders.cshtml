@@ -1,0 +1,68 @@
+﻿@model List<SvetulkaApp.Web.ViewModels.Orders.MyOrdersViewModel>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<link href="~/css/myOrders.css" rel="stylesheet" />
+<div class="mobile-fondsize-20 h2" id="myTitle">@ViewData["Title"]</div>
+<div class="container mobile-fondsize-11">
+    <table class="table table-hover">
+        <thead>
+            <tr class="row">
+                <th scope="col" class="col-2 d-flex justify-content-center">#</th>
+                <th scope="col" class="col-8 d-flex justify-content-center">Status</th>
+                <th scope="col" class="col-2 d-flex justify-content-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr class="row">
+                    @if (order.Status == "Ordered")
+                    {
+                        <td class="col-2 d-flex justify-content-center">
+                            @order.Id
+                        </td>
+                        <td class="col-8 d-flex justify-content-center">
+                            @order.Status
+                        </td>
+                        <td class="col-md-2 d-flex justify-content-around">
+                            <div class="mr-2">
+                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-primary btn-sm mobile-fondsize-11"> Details</a>
+                            </div>
+                        </td>
+                    }
+                    @if (order.Status == "Shipped")
+                    {
+                        <td class="col-2 d-flex justify-content-center table-warning">
+                            @order.Id
+                        </td>
+                        <td class="col-8 d-flex justify-content-center table-warning">
+                            @order.Status
+                        </td>
+                        <td class="col-md-2 d-flex justify-content-around table-warning">
+                            <div class="mr-2">
+                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-primary btn-sm mobile-fondsize-11"> Details</a>
+                            </div>
+                        </td>
+                    }
+                    @if (order.Status == "Delivered")
+                    {
+                        <td class="col-2 d-flex justify-content-center table-success">
+                            @order.Id
+                        </td>
+                        <td class="col-8 d-flex justify-content-center table-success">
+                            @order.Status
+                        </td>
+                        <td class="col-md-2 d-flex justify-content-around table-success">
+                            <div class="mr-2">
+                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-primary btn-sm mobile-fondsize-11"> Details</a>
+                            </div>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

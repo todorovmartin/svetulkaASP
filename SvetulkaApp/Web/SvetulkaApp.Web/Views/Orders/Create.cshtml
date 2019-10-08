@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+@using SvetulkaApp.Web.Components
+
+@*@model CreateOrderViewModel*@
+
+@{
+    ViewData["Title"] = "Данни за поръчката";
+}
+
+<div class="h3 text-center mb-3">@ViewData["Title"]</div>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33%</div>
+</div>
+<div class="h3 mt-3 mb-2">Адрес за доставка</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" asp-controller="Orders" asp-action="Create">
+            <div class="text-right mt-3 mb-3">
+                <button type="submit" class="form-group btn btn-success btn-lg mb-0">Продължи с поръчката</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        @await Component.InvokeAsync(typeof(ShoppingCartComponent))
+        <p class="text-danger h6 text-right">(Цената за доставка ще бъде платена директно на доставчика!)</p>
+    </div>
+</div>

@@ -42,4 +42,9 @@
     <ProjectReference Include="..\SvetulkaApp.Web.Infrastructure\SvetulkaApp.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SvetulkaApp.Web.ViewModels\SvetulkaApp.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\ViewModels\Orders\" />
+    <Folder Include="Areas\Administration\Views\Orders\" />
+  </ItemGroup>
 </Project>

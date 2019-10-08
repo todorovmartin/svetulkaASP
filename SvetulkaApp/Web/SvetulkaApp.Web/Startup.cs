@@ -110,6 +110,7 @@
             services.AddScoped<IFavoritesService, FavoritesService>();
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IOrdersService, OrdersService>();
 
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>

@@ -32,9 +32,9 @@ namespace SvetulkaApp.Web.Areas.Administration.Controllers
             pageNumber = pageNumber ?? DEFAULT_PAGE_NUMBER;
             pageSize = pageSize ?? DEFAULT_PAGE_SIZE;
 
-            var pageProductsViewMode = products.ToPagedList(pageNumber.Value, pageSize.Value);
+            var pageProductsViewModel = products.ToPagedList(pageNumber.Value, pageSize.Value);
 
-            return View(pageProductsViewMode);
+            return this.View(pageProductsViewModel);
         }
 
         public IActionResult Create()

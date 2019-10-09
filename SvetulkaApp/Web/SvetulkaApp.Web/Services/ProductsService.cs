@@ -64,11 +64,7 @@ namespace SvetulkaApp.Web.Services
         {
             var searchStringClean = searchString.Split(new string[] { ",", ".", " " }, StringSplitOptions.RemoveEmptyEntries);
 
-            IQueryable<Product> products = this.db.Products.Include(x => x.Category)
-                                                           .Include(x => x.ImageUrl)
-                                                           .Include(x => x.Name)
-                                                           .Include(x => x.Price)
-                                                           .Where(x => searchStringClean.All(c => x.Name.ToLower().Contains(c.ToLower())));
+            IQueryable<Product> products = this.db.Products.Where(x => searchStringClean.All(c => x.Name.ToLower().Contains(c.ToLower())));
             return products;
         }
 

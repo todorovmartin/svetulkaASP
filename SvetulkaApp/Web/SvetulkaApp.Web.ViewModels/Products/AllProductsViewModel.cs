@@ -1,4 +1,6 @@
-﻿using SvetulkaApp.Data.Models.Enums;
+﻿using SvetulkaApp.Data.Models;
+using SvetulkaApp.Data.Models.Enums;
+using System.Collections.Generic;
 
 namespace SvetulkaApp.Web.ViewModels.Products
 {
@@ -17,5 +19,8 @@ namespace SvetulkaApp.Web.ViewModels.Products
         public string Description { get; set; }
 
         public string SearchQuery { get; set; }
+
+        // todo
+        public ICollection<string> Tags { get; set; }
     }
 }

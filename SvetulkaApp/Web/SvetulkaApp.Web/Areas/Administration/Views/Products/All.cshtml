@@ -16,9 +16,9 @@
                 <th scope="col" class="col-2 d-flex justify-content-center"></th>
                 <th scope="col" class="col-2 d-flex justify-content-center">Title</th>
                 <th scope="col" class="col-3 d-flex justify-content-center">Price</th>
-                <th scope="col" class="col-2 d-flex justify-content-center">Category</th>
+                <th scope="col" class="col-1 d-flex justify-content-center">Category</th>
                 <th scope="col" class="col-2 d-flex justify-content-center"></th>
-                <th scope="col" class="col-1 d-flex justify-content-center"></th>
+                <th scope="col" class="col-2 d-flex justify-content-center"></th>
             </tr>
         </thead>
         <tbody>
@@ -29,23 +29,25 @@
                         <img src="@product.ImageUrl" height="50">
                     </td>
                     <td class="col-3 d-flex justify-content-center">
-                        <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
-                            @product.Name
-                        </a>
+                        @product.Name
                     </td>
                     <td class="col-1 d-flex justify-content-center">
-                        @(product.Price)лв.
+                        $@(product.Price)
                     </td>
                     <td class="col-2 d-flex justify-content-center">
                         @product.Category
                     </td>
                     <td class="col-md-3 d-flex justify-content-around">
                         <div class="mr-2">
-                            <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary btn-sm mobile-fondsize-11">Edit</a>
+                            <a href="javascript:void(0);" data-id="@product.Id" class="btn btn-warning btn-sm anchorDetail">Details</a>
+                            @*<a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning btn-sm">Details</a>*@
                         </div>
                         <div class="mr-2">
-                            <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-danger btn-sm">Details</a>
+                            <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary btn-sm mobile-fondsize-11">Edit</a>
                         </div>
+                        @*<div class="mr-2">
+                                <a asp-area="Administration" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger btn-sm">Delete</a>
+                            </div>*@
                     </td>
                 </tr>
             }
@@ -64,3 +66,19 @@
                                                 })
     </div>
 </div>
+
+<div id="myModal" class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" id="myModalContent">
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+    {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/js/modal.js"></script>
+}

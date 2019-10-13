@@ -31,7 +31,15 @@ namespace SvetulkaApp.Web.Services
 
         public void DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            var product = this.GetProductById(id);
+
+            if (product == null)
+            {
+                return;
+            }
+
+            this.db.Products.Remove(product);
+            this.db.SaveChanges();
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -64,8 +72,13 @@ namespace SvetulkaApp.Web.Services
         {
             var searchStringClean = searchString.Split(new string[] { ",", ".", " " }, StringSplitOptions.RemoveEmptyEntries);
 
-            IQueryable<Product> products = this.db.Products.Where(x => searchStringClean.All(c => x.Name.ToLower().Contains(c.ToLower())));
+            //IQueryable<Product> products = this.db.Products.Where(x => searchStringClean.All(c => x.Name.ToLower().Contains(c.ToLower())));
+            IQueryable<Product> products = this.db.Products.Where(x => x.Name.ToLower().Contains(searchString.ToLower())
+                                                                 || x.Tags.ToLower().Contains(searchString.ToLower())
+                                                                 || x.Description.ToLower().Contains(searchString.ToLower()));
             return products;
+
+            // || x.Description.ToLower().Contains(c.ToLower())
         }
 
         public bool ProductExists(int id)

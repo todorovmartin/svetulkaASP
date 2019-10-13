@@ -31,6 +31,7 @@ namespace SvetulkaApp.Web.Controllers
         {
             var product = this.productsService.GetProductById(id);
 
+            this.ViewBag.Id = product.Id;
             this.ViewBag.Description = product.Description;
             this.ViewBag.ImageUrl = product.ImageUrl;
             this.ViewBag.Name = product.Name;

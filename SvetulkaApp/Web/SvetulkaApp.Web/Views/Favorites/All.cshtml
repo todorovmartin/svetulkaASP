@@ -20,25 +20,23 @@
             {
                 <tr class="row">
                     <td class="col-2 d-flex justify-content-center">
-                        <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId">
-                            <img src="@product.ProductImageUrl" width="50" height="50">
-                        </a>
+                        <img src="@product.ProductImageUrl" width="50" height="50">
                     </td>
                     <td class="col-4 d-flex justify-content-center">
-                        <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId">
+                        <a href="javascript:void(0);" class="anchorDetail" data-id="@product.ProductId">
                             @product.ProductName
                         </a>
                     </td>
                     <td class="col-1 d-flex justify-content-center">
-                        @product.ProductPrice
+                        $@product.ProductPrice
                     </td>
                     <td class="col-md-5 d-flex justify-content-around">
                         <div class="mr-2">
                             <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.ProductId" class="btn btn-primary btn-sm mobile-fondsize-11"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>
                         @*<div class="mr-2">
-                            <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.ProductId" asp-route-direct="true" class="btn btn-danger btn-sm"><i class="far fa-credit-card"></i> Buy</a>
-                        </div>*@
+                                <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.ProductId" asp-route-direct="true" class="btn btn-danger btn-sm"><i class="far fa-credit-card"></i> Buy</a>
+                            </div>*@
                         <div>
                             <a asp-controller="Favorites" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-outline-danger btn-sm"><i class="fas fa-times-circle"></i> Remove</a>
                         </div>
@@ -52,3 +50,19 @@
         <p>Your favorites list is empty!</p>
     }
 </div>
+
+<div id="myModal" class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" id="myModalContent">
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+    {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/js/modal.js"></script>
+}  

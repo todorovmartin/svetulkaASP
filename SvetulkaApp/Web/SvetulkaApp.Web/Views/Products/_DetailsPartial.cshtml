@@ -1,28 +1,63 @@
-﻿@*@Model DetailsProductViewModel*@
+﻿<link rel="stylesheet" type="text/css" href="~/css/reset-css.css">
+<link href="~/css/site.css" rel="stylesheet" />
+<link href="~/css/modal.css" rel="stylesheet" />
+<div>
+    <div class="modal-header ">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <img class="modalImg" src="@ViewBag.ImageUrl" alt="Photo of sunset">
+        </div>
+        <div class="col-lg-6">
+            <div class="product-details">
+                <h4 class="card-title">@ViewBag.Name</h4>
+                <h6 class="card-subtitle text-muted">@ViewBag.Category</h6>
+                <div class="dropdown-divider"></div>
+                <h6 class="card-subtitle text-muted">@ViewBag.Description</h6>
+                <div class="dropdown-divider"></div>
+                <h6 class="card-subtitle price">$@ViewBag.Price</h6>
+            </div>
+            <div class="products-buttons">
+                @*<a asp-controller="Favorites" asp-action="Add" asp-route-id="@ViewBag.Id" class="card-btns card-link"><i class="fas fa-heart fa-md favs"></i></a>
+                    <a class="card-btns card-link" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@ViewBag.Id"><i class="fas fa-shopping-bag fa-md cart"></i></a>*@
+            </div>
+            <div id="btns">
+                <a class="btn btn-danger btn-sm addToFavs" asp-controller="Favorites" asp-action="Add" asp-route-id="@ViewBag.Id"><i class="fas fa-heart fa-md favs" style="color: white"></i></a>
+                <a class="btn btn-info btn-sm addToCart" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@ViewBag.Id">Add To Cart</a>
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <hr />
+</div>
+
+@*@Model DetailsProductViewModel*@
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="row">
-                <div class="col-lg-6">
-                    <img src="" alt="Photo of sunset">
-                </div>
-                <div class="col-lg-6">
-                    <div class="product-details">
-                        <h4 class="card-title"></h4>
-                        <h6 class="card-subtitle text-muted"></h6>
-                        <div class="dropdown-divider"></div>
-                        <h6 class="card-subtitle text-muted">@ViewBag.Name</h6>
-                        <div class="dropdown-divider"></div>
-                        <h6 class="card-subtitle">@ViewBag.Price bgn</h6>
+@*<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true" id="myModal">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" id="myModalContent">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="" alt="Photo of sunset">
                     </div>
-                    <div class="products-buttons">
-                        <a class="card-btns card-link" href="#">Order</a>
+                    <div class="col-lg-6">
+                        <div class="product-details">
+                            <h4 class="card-title"></h4>
+                            <h6 class="card-subtitle text-muted"></h6>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="card-subtitle text-muted">@ViewBag.Name</h6>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="card-subtitle">$@ViewBag.Price</h6>
+                        </div>
+                        <div class="products-buttons">
+                            <a class="card-btns card-link" href="#">Order</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </div>*@

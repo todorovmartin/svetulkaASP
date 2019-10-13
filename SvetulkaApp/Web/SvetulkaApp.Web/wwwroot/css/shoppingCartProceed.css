@@ -1,0 +1,18 @@
+﻿.cart {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+
+.mybtn {
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+
+.totalSum {
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}

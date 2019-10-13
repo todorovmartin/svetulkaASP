@@ -26,6 +26,4 @@ namespace SvetulkaApp.Web.Areas.Administration.ViewModels.Products
         [Display(Name = "Price")]
         public decimal Price { get; set; }
     }
-
-    
 }

@@ -1,0 +1,15 @@
+﻿.favs {
+    color: gray;
+}
+
+.favs:hover {
+    color: red;
+}
+
+.cart {
+    color: gray;
+}
+
+.cart:hover {
+    color: green;
+}

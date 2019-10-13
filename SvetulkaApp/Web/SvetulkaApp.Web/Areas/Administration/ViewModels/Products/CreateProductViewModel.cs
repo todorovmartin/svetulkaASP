@@ -19,9 +19,6 @@ namespace SvetulkaApp.Web.Areas.Administration.ViewModels.Products
         [Display(Name = "Category")]
         [Required(ErrorMessage = "\"{0}\" is required.")]
         public string Category { get; set; }
-        //public int ProductCategoryId { get; set; }
-
-        //public ICollection<ProductCategory> ProductCategories { get; set; }
 
         [Display(Name = "Description")]
         public string Description { get; set; }
@@ -33,5 +30,8 @@ namespace SvetulkaApp.Web.Areas.Administration.ViewModels.Products
         [Required(ErrorMessage = "\"{0}\" is required.")]
         [Range(1, int.MaxValue, ErrorMessage = "\"{0}\" should be between {1} and {2}")]
         public decimal Price { get; set; }
+
+        [Display(Name = "Tags")]
+        public string Tags { get; set; }
     }
 }

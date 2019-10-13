@@ -17,6 +17,10 @@ p.card-btns {
     display: inline;
 }
 
+a {
+    background-color: white;
+}
+
 a:hover {
     color: black;
 }

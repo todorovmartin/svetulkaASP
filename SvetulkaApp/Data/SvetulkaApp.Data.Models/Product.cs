@@ -22,6 +22,8 @@ namespace SvetulkaApp.Data.Models
 
         public bool IsInStock { get; set; }
 
+        public string Tags { get; set; }
+
         public Tag Tag { get; set; }
 
         public ProductCategory Category { get; set; }

@@ -25,17 +25,29 @@
                     <p class="card-text">@product.Description</p>
                 </div>
                 <div class="card-footer">
-                    <p class="card-btns">@product.Price bgn</p>
-                    <a id="load-partial" class="card-btns card-link" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">Details</a>
-                    <a asp-controller="Favorites" asp-action="Add" asp-route-id="@product.Id" class="card-btns card-link">fav</a>
-                    <a class="card-btns card-link" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Add to cart</a>
+                    <p class="card-btns">$@product.Price</p>
+                    @*<a id="load-partial" class="card-btns card-link" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">Details</a>*@
+                    <a href="javascript:void(0);" class="anchorDetail" data-id="@product.Id">Details</a>
+                    <a asp-controller="Favorites" asp-action="Add" asp-route-id="@product.Id" class="card-btns card-link"><i class="fas fa-heart fa-md favs"></i></a>
+                    <a class="card-btns card-link" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id"><i class="fas fa-shopping-bag fa-md cart"></i></a>
                 </div>
             </div>
         }
     </div>
 </div>
 
-@*data-toggle="modal" data-target=".bd-example-modal-lg"*@
+<div id="myModal" class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" id="myModalContent">
+        </div>
+    </div>
 
-@*@Html.Partial("_DetailsPartial.cshtml", new DetailsProductViewModel { Price = 3, Description = "hello" })*@
-@*<partial name="_DetailsPartial" model="new DetailsProductViewModel { Price = 3 }" />*@
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/js/modal.js"></script>
+}  

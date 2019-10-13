@@ -76,6 +76,13 @@ namespace SvetulkaApp.Web.Areas.Administration.Controllers
             return this.RedirectToAction(nameof(this.All));
         }
 
+        public IActionResult Delete(int id)
+        {
+            this.productsService.DeleteProduct(id);
+
+            return this.RedirectToAction(nameof(this.All));
+        }
+
         public IActionResult Details(int id)
         {
             var product = this.productsService.GetProductById(id);
